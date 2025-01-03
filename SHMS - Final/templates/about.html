@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyRise Hotel - About</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f5fa;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #7e5aa0;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav a:hover {
+            background-color: #6b4892;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #7e5aa0;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .icon-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .icon-container i {
+            font-size: 40px;
+            margin: 0 15px;
+            color: #7e5aa0;
+            transition: transform 0.3s;
+        }
+
+        .icon-container i:hover {
+            transform: scale(1.2);
+        }
+
+        .footer {
+            background-color: #7e5aa0;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #7e5aa0;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background-color: #6b4892;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>SkyRise Hotel</h2>
+        <nav>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <a href="/about"><i class="fas fa-info-circle"></i> About</a>
+            <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="/logout"><i class="fas fa-sign-in-alt"></i> Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>About SkyRise Hotel</h1>
+        <p>
+            Welcome to SkyRise Hotel, where luxury meets comfort. Nestled in the heart of the city, our hotel provides the perfect blend of elegance and functionality. From our spacious rooms equipped with modern amenities to our world-class hospitality services, we ensure your stay is nothing less than exceptional.
+        </p>
+        <p>
+            Whether you're here for business or leisure, our state-of-the-art facilities and dedicated staff are here to cater to your every need. Relax in our luxurious spa, indulge in gourmet cuisine at our on-site restaurants, or plan your next event in our fully equipped conference halls. SkyRise Hotel is more than just a place to stay—it's an experience to remember.
+        </p>
+
+        <div class="icon-container">
+            <i class="fas fa-spa"></i>
+            <i class="fas fa-utensils"></i>
+            <i class="fas fa-concierge-bell"></i>
+        </div>
+
+        <a href="rooms.html" class="button"><i class="fas fa-arrow-right"></i> Explore Our Rooms</a>
+    </div>
+
+    <footer class="footer">
+        <p>SkyRise Hotel &copy; 2024. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

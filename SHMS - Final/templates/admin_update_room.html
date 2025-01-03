@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Room</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #774c99;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between; /* Aligns content at both ends */
+            align-items: center; /* Vertically centers items */
+        }
+
+        .navbar header {
+            display: flex; /* Groups header elements */
+            align-items: center;
+            gap: 15px; /* Adds spacing between elements */
+        }
+
+        .navbar header h1 {
+            margin: 0; /* Removes extra margin for h1 */
+            font-size: 20px; /* Adjusts font size */
+            color: #fff;
+        }
+
+        .navbar header .header-button {
+            margin-left: 15px; /* Space between the back button and title */
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px; /* Adds horizontal spacing */
+            font-size: 14px; /* Adjusts font size */
+        }
+
+        .navbar a:hover {
+            text-decoration: underline; /* Adds hover effect */
+        }
+
+        .view-rooms-button {
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .view-rooms-button:hover {
+            background: #fff;
+            color: #333;
+        }
+
+        /* Form Container */
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group img {
+            margin-top: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Flash Messages */
+        .flashes {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .flashes li {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <header>
+            <h1>SkyRise Hotel - Admin Bookings</h1>
+            <a href="/" class="header-button"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        </header>
+        <div>
+            <a href="/admin_bookings"><i class="fas fa-book"></i> Admin Bookings</a>
+            <a href="/abcd"><i class="fas fa-plus-circle"></i> Add Room</a>
+            <a href="/adminviewrooms">
+                <button class="view-rooms-button">
+                    <i class="fas fa-plus-circle"></i> Admin View Rooms
+                </button>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Update Room Form -->
+    <div class="form-container">
+        <h1 class="form-title">Update Room Details</h1>
+        <form method="POST" action="{{ url_for('update_room', room_id=room['_id']) }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="room_number">Room Number:</label>
+                <input type="text" id="room_number" name="room_number" value="{{ room['room_number'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="room_type">Room Type:</label>
+                <input type="text" id="room_type" name="room_type" value="{{ room['room_type'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="capacity">Capacity:</label>
+                <input type="number" id="capacity" name="capacity" value="{{ room['capacity'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" value="{{ room['price'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="availability">Availability:</label>
+                <select id="availability" name="availability" required>
+                    <option value="Available" {% if room['availability'] == 'Available' %} selected {% endif %}>Available</option>
+                    <option value="Not Available" {% if room['availability'] == 'Not Available' %} selected {% endif %}>Not Available</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="room_image">Room Image:</label>
+                <input type="file" id="room_image" name="room_image">
+                {% if room['room_image'] %}
+                <img src="{{ room['room_image'] }}" alt="Room Image">
+                {% endif %}
+            </div>
+            <button type="submit" class="btn-primary">Update Room</button>
+        </form>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

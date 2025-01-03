@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Rooms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #774c99;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between; /* Aligns content at both ends */
+            align-items: center; /* Vertically centers items */
+        }
+
+        .navbar header {
+            display: flex; /* Groups header elements */
+            align-items: center;
+            gap: 15px; /* Adds spacing between elements */
+        }
+
+        .navbar header h1 {
+            margin: 0; /* Removes extra margin for h1 */
+            font-size: 20px; /* Adjusts font size */
+            color: #fff;
+        }
+
+        .navbar header .header-button {
+            margin-left: 15px; /* Space between the back button and title */
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px; /* Adds horizontal spacing */
+            font-size: 14px; /* Adjusts font size */
+        }
+
+        .navbar a:hover {
+            text-decoration: underline; /* Adds hover effect */
+        }
+
+        .view-rooms-button {
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .view-rooms-button:hover {
+            background: #fff;
+            color: #333;
+        }
+
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #6c4b8e;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover {
+            background-color: #f7d6f3;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .view-button, .update-button, .delete-button {
+            padding: 10px 20px;
+            background-color: #6c4b8e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .view-button:hover, .update-button:hover, .delete-button:hover {
+            background-color: #7e5aa0;
+        }
+
+        .delete-button {
+            background-color: #e74c3c;
+        }
+
+        .delete-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <header>
+            <h1>SkyRise Hotel - Admin Bookings</h1>
+            <a href="/" class="header-button"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        </header>
+        <div>
+            <a href="/admin_bookings"><i class="fas fa-book"></i> Admin Bookings</a>
+            <a href="/abcd"><i class="fas fa-plus-circle"></i> Add Room</a>
+            <a href="/adminviewrooms">
+                <button class="view-rooms-button">
+                    <i class="fas fa-plus-circle"></i> Admin View Rooms
+                </button>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>All Rooms</h2>
+        <table>
+            <tr>
+                <th>Room Number</th>
+                <th>Room Type</th>
+                <th>Capacity</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Room Image</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for room in rooms %}
+            <tr>
+                <td>{{ room.room_number }}</td>
+                <td>{{ room.room_type }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.price }}</td>
+                <td>{{ room.availability }}</td>
+                <td>
+                    <img src="{{ room.room_image }}" alt="Room Image" width="100px" height="100px">
+                </td>
+                <td>
+                    <!-- Ensure URL and room ID are correctly passed -->
+                    <a href="{{ url_for('admin_update_room', room_id=room._id) }}" class="update-button">Update</a>
+                    
+                    <!-- Deletion Confirmation (JS) -->
+                    <a href="{{ url_for('admin_delete_room', room_id=room._id) }}" class="delete-button" onclick="return confirm('Are you sure you want to delete this room?');">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

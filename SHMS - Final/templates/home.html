@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Hospitality Management System</title>
+    <style>
+        /* General Reset */
+        body, h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #f3e9fa; /* Light lavender background */
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #865cb9; /* Dark lavender */
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.0rem;
+            margin-bottom: 10px;
+        }
+
+        header nav {
+            margin-top: 10px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #d1bfe4; /* Softer lavender */
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero .cta {
+            background-color: #6a3ea1;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .hero .cta:hover {
+            background-color: #502b7d;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .section .btn {
+            display: inline-block;
+            background-color: #6a3ea1;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .section .btn:hover {
+            background-color: #502b7d;
+        }
+
+        /* Room Cards */
+        .rooms {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .room-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 250px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .room-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .room-card h4 {
+            margin: 10px 0;
+            color: #6a3ea1;
+        }
+
+        .room-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .room-card .btn {
+            display: block;
+            text-align: center;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #6a3ea1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SkyRise Hotel - Where every stay feels like a getway</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="/about">About</a>
+        
+        <a href="/contact">Contact</a>
+        <a href="/loginpage">Login</a>
+        <a href="/register">Signup</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <h2>Welcome to SkyRise</h2>
+    <p>Experience luxury and comfort with our smart hospitality services.</p>
+    <a href="login.html"><button class="cta">Reserve a Room </button></a>
+</div>
+
+<section class="section">
+    <h3>Our Rooms</h3>
+    <div class="rooms">
+        <div class="room-card">
+            <img src="images/delux.jpg" alt="Deluxe Room">
+            <h4>Deluxe Room</h4>
+            <p>Experience the best comfort in our deluxe rooms with premium amenities.</p>
+            <a href="login.html" class="btn">Book Now</a>
+        </div>
+        <div class="room-card">
+            <img src="/images/executive.jpg" alt="Executive Room">
+            <h4>Executive Room</h4>
+            <p>Perfect for business travelers with added convenience.</p>
+            <a href="login.html" class="btn">Book Now</a>
+        </div>
+        <div class="room-card">
+            <img src="/images/standard.jpg" alt="Standard Room">
+            <h4>Standard Room</h4>
+            <p>Affordable luxury for a relaxing stay for friends and family.</p>
+            <a href="login.html" class="btn">Book Now</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Smart Hospitality Management System. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - View Bookings</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f5fa;
+            margin: 0;
+            padding: 20px;
+            color: #555;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #774c99;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar a, .navbar button {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .navbar a:hover, .navbar button:hover {
+            background-color: #5e3878;
+        }
+
+        .view-rooms-button {
+            background-color: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .view-rooms-button:hover {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Heading Styles */
+        h2 {
+            color: #6c4b8e;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #6c4b8e;
+            color: white;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        /* Button Styles */
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[name="action"][value="accept"] {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        button[name="action"][value="accept"]:hover {
+            background-color: #45a049;
+        }
+
+        button[name="action"][value="reject"] {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+
+        button[name="action"][value="reject"]:hover {
+            background-color: #e53935;
+        }
+
+        /* Center the table within the page */
+        .table-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>SkyRise Hotel - Admin Bookings</h1>
+        <div class="nav-links">
+            <a href="/">Back to Dashboard</a>
+            <a href="/admin_bookings">Admin Bookings</a>
+            <a href="/abcd">Add Room</a>
+            <button class="view-rooms-button" onclick="location.href='/adminviewrooms'">
+                Admin View Rooms
+            </button>
+        </div>
+    </nav>
+
+    <h2>Manage Bookings</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Room ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.username }}</td>
+                    <td>{{ booking.room_id }}</td>
+                    <td>{{ booking.start_date | default('N/A') }}</td>
+                    <td>{{ booking.end_date | default('N/A') }}</td>
+                    <td>${{ booking.total_price }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>
+                        <form action="/update_booking_status/{{ booking._id }}" method="POST">
+                            <button name="action" value="accept">Accept</button>
+                            <button name="action" value="reject">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
